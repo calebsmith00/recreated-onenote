@@ -6,9 +6,15 @@ import "@fontsource/roboto/700.css";
 /* MATERIAL UI IMPORT FINISH */
 
 import type { AppProps } from "next/app";
+import Navbar from "../components/navbar";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Navbar />
+      <Component {...pageProps} />
+    </>
+  );
 }
 
 export default MyApp;
