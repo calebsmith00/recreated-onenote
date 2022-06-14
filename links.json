@@ -1,0 +1,13 @@
+{
+  "home": {
+    "path": "/",
+    "index": 1,
+    "label": "Home"
+  },
+
+  "create_template": {
+    "path": "/create-template",
+    "index": 2,
+    "label": "Create Template"
+  }
+}
