@@ -9,5 +9,11 @@
     "path": "/create-template",
     "index": 2,
     "label": "Create Template"
+  },
+
+  "login": {
+    "path": "/login",
+    "index": 3,
+    "label": "Login"
   }
 }

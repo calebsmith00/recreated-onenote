@@ -12,16 +12,27 @@ const Navbar = () => {
 
   return (
     <Tabs value={activeLinkIndex}>
+      {/* GET / */}
       <NavLink
         href={links.home.path}
         value={links.home.index}
         label={links.home.label}
         handleLinkClick={handleLinkClick}
       />
+
+      {/* GET /create-template */}
       <NavLink
         href={links.create_template.path}
         value={links.create_template.index}
         label={links.create_template.label}
+        handleLinkClick={handleLinkClick}
+      />
+
+      {/* GET /login */}
+      <NavLink
+        href={links.login.path}
+        value={links.login.index}
+        label={links.login.label}
         handleLinkClick={handleLinkClick}
       />
     </Tabs>
