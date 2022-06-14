@@ -457,12 +457,29 @@
     "idb" "6.0.0"
     "lit-element" "^2.4.0"
 
-"@microsoft/mgt-msal2-provider@^2.5.2":
+"@microsoft/mgt-msal-provider@2.5.2":
+  "integrity" "sha512-a3WFHGgZwvjR/NY90ZlfYjAZGFpRGcvuoeIS2ezsyNaENMaF3YoN4JH6N9Ca1SLY8LK0bSAPARrpKF1u2q9f2Q=="
+  "resolved" "https://registry.npmjs.org/@microsoft/mgt-msal-provider/-/mgt-msal-provider-2.5.2.tgz"
+  "version" "2.5.2"
+  dependencies:
+    "@microsoft/mgt-element" "2.5.2"
+    "@microsoft/microsoft-graph-client" "^2.2.1"
+    "msal" "^1.4.10"
+
+"@microsoft/mgt-msal2-provider@^2.5.2", "@microsoft/mgt-msal2-provider@2.5.2":
   "integrity" "sha512-FVV7Qhu5asrY3OPLF7h7BXo1rII+XYTE2ZQC0GrJfpRYLPgnx1m4psg59NQEaiuPCQ756E4MCpSt+XCdE+m66Q=="
   "resolved" "https://registry.npmjs.org/@microsoft/mgt-msal2-provider/-/mgt-msal2-provider-2.5.2.tgz"
   "version" "2.5.2"
   dependencies:
     "@azure/msal-browser" "^2.22.0"
+    "@microsoft/mgt-element" "2.5.2"
+    "@microsoft/microsoft-graph-client" "^2.2.1"
+
+"@microsoft/mgt-proxy-provider@2.5.2":
+  "integrity" "sha512-8maTx+h/CRVPuSEqg1Z/NI/FzVoeyB8GZf6JQg3rcK7WxOE6NXOqh3VBIaPur6SYmS9oh4+o62h2XOoy1IX8ZQ=="
+  "resolved" "https://registry.npmjs.org/@microsoft/mgt-proxy-provider/-/mgt-proxy-provider-2.5.2.tgz"
+  "version" "2.5.2"
+  dependencies:
     "@microsoft/mgt-element" "2.5.2"
     "@microsoft/microsoft-graph-client" "^2.2.1"
 
@@ -476,6 +493,47 @@
     "@microsoft/microsoft-graph-types" "^2.0.0"
     "@microsoft/microsoft-graph-types-beta" "^0.16.0-preview"
     "wc-react" "^0.5.0"
+
+"@microsoft/mgt-sharepoint-provider@2.5.2":
+  "integrity" "sha512-yX9tm8qq7eQk6nZEWmArsg3RJyOHrhct/mpPYqVXfZV9KleekWq2aBRAxfix63Mb++lUbaoFzt+tdPzz8eDVAg=="
+  "resolved" "https://registry.npmjs.org/@microsoft/mgt-sharepoint-provider/-/mgt-sharepoint-provider-2.5.2.tgz"
+  "version" "2.5.2"
+  dependencies:
+    "@microsoft/mgt-element" "2.5.2"
+
+"@microsoft/mgt-teams-msal2-provider@2.5.2":
+  "integrity" "sha512-j2B68NbF6tcAXB+riwmCrNPeXip6l7m9gAIM3LU2sYyIlYU+tTuAA2BIiUv/zSHsK2cn0M+oySEa2KP/aZHhWQ=="
+  "resolved" "https://registry.npmjs.org/@microsoft/mgt-teams-msal2-provider/-/mgt-teams-msal2-provider-2.5.2.tgz"
+  "version" "2.5.2"
+  dependencies:
+    "@azure/msal-browser" "^2.22.0"
+    "@microsoft/mgt-element" "2.5.2"
+    "@microsoft/mgt-msal2-provider" "2.5.2"
+    "@microsoft/microsoft-graph-client" "^2.2.1"
+
+"@microsoft/mgt-teams-provider@2.5.2":
+  "integrity" "sha512-7QZk/QuwHscbZnnIl9Nc0AhhJ4e8eh6njH33e7f12CwG4IkFktXygbZwZk7XLalpvtr+Da/L3cdXQfiygO1x/A=="
+  "resolved" "https://registry.npmjs.org/@microsoft/mgt-teams-provider/-/mgt-teams-provider-2.5.2.tgz"
+  "version" "2.5.2"
+  dependencies:
+    "@microsoft/mgt-element" "2.5.2"
+    "@microsoft/mgt-msal-provider" "2.5.2"
+    "@microsoft/microsoft-graph-client" "^2.2.1"
+    "msal" "^1.4.10"
+
+"@microsoft/mgt@^2.5.2":
+  "integrity" "sha512-tYAfpGibydgJ7OCwTSGCaGFIRYg+hMvz5QZaZnLU8i2vyir2OlompTgXkl612GOxHpQTj+C+SwSK00V1Epi76A=="
+  "resolved" "https://registry.npmjs.org/@microsoft/mgt/-/mgt-2.5.2.tgz"
+  "version" "2.5.2"
+  dependencies:
+    "@microsoft/mgt-components" "2.5.2"
+    "@microsoft/mgt-element" "2.5.2"
+    "@microsoft/mgt-msal-provider" "2.5.2"
+    "@microsoft/mgt-msal2-provider" "2.5.2"
+    "@microsoft/mgt-proxy-provider" "2.5.2"
+    "@microsoft/mgt-sharepoint-provider" "2.5.2"
+    "@microsoft/mgt-teams-msal2-provider" "2.5.2"
+    "@microsoft/mgt-teams-provider" "2.5.2"
 
 "@microsoft/microsoft-graph-client@^2.2.1":
   "integrity" "sha512-fbDN3UJ+jtSP9llAejqmslMcv498YuIrS3OS/Luivb8OSjdUESZKdP0gcUunnuNIayePVT0/bGYSJTzAIptJQQ=="
@@ -1894,7 +1952,7 @@
   "resolved" "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz"
   "version" "2.1.2"
 
-"msal@^1.4.4":
+"msal@^1.4.10", "msal@^1.4.4":
   "integrity" "sha512-Q6jIV5RG6mD9O0bzZrR/f8v5QikrVWU0sccwOyqWE1xlBkKYVKRa/L8Gxt1X58M+J/N9V0JskhvO4KIfRHlE8g=="
   "resolved" "https://registry.npmjs.org/msal/-/msal-1.4.16.tgz"
   "version" "1.4.16"

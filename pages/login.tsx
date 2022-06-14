@@ -1,7 +1,12 @@
 import type { NextPage } from "next";
+import { Login } from "@microsoft/mgt-react";
 
-const Login: NextPage = () => {
-  return <></>;
+const LoginPage: NextPage = () => {
+  return (
+    <>
+      <Login />
+    </>
+  );
 };
 
-export default Login;
+export default LoginPage;
