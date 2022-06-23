@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@azure/identity": "^2.0.5",
+    "@azure/msal-node": "^1.10.0",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@fontsource/roboto": "^4.5.7",
@@ -16,12 +18,14 @@
     "@microsoft/mgt-element": "^2.5.2",
     "@microsoft/mgt-msal2-provider": "^2.5.2",
     "@microsoft/mgt-react": "^2.5.2",
+    "@microsoft/microsoft-graph-client": "^3.0.2",
     "@mui/material": "^5.8.3",
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0"
   },
   "devDependencies": {
+    "@microsoft/microsoft-graph-types": "^2.22.0",
     "@types/node": "17.0.42",
     "@types/react": "18.0.12",
     "@types/react-dom": "18.0.5",
