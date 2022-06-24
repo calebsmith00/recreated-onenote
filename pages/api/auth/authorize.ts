@@ -5,17 +5,27 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { code } = req.query;
-  const { APP_ID, CLIENT_SECRET } = process.env;
-
-  if (typeof code !== "string") return;
+  const { APP_ID, CLIENT_SECRET, REDIRECT_URI, CODE_VERIFIER } =
+    process.env || "";
+  if (
+    typeof code !== "string" ||
+    !code ||
+    !APP_ID ||
+    !CLIENT_SECRET ||
+    !REDIRECT_URI ||
+    !CODE_VERIFIER
+  )
+    return res
+      .status(400)
+      .json({ error: true, message: "Invalid paramaters sent to server." });
 
   const tokenResponseBody = {
     grant_type: "authorization_code",
     code: code,
-    client_id: APP_ID || "0000000000",
-    redirect_uri: "http://localhost:3000/api/auth/authorize",
-    code_verifier: "thisIsMyCode123",
-    client_secret: CLIENT_SECRET || "000000000",
+    client_id: APP_ID,
+    redirect_uri: REDIRECT_URI,
+    code_verifier: CODE_VERIFIER,
+    client_secret: CLIENT_SECRET,
   };
 
   const body = new URLSearchParams();
@@ -30,12 +40,16 @@ export default async function handler(
       "Content-Type": "application/x-www-form-urlencoded",
     }),
   };
-  //7BtZpqFs_Bq9OMamb4NKdjBjI8huQEyzXagBoldMRG0
-  const tokenResponse = await fetch(
+
+  const requestToken = await fetch(
     "https://login.microsoftonline.com/organizations/oauth2/v2.0/token",
     tokenReponseOptions
   );
+  const tokenResponse = await requestToken.json();
 
-  console.log(await tokenResponse.json());
-  res.status(200).json({ message: "JSON received, pal" });
+  if (tokenResponse.access_token)
+    return res.status(200).redirect("http://localhost:3000");
+  res
+    .status(200)
+    .json({ message: "No bearer token was received from server." });
 }
