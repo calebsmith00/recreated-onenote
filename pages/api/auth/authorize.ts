@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { serialize } from "cookie";
 
 export default async function handler(
   req: NextApiRequest,
@@ -29,9 +30,11 @@ export default async function handler(
   };
 
   const body = new URLSearchParams();
-  Object.entries(tokenResponseBody).forEach((entry) =>
-    body.append(entry[0], entry[1])
-  );
+  Object.entries(tokenResponseBody).forEach((entry) => {
+    const key = entry[0];
+    const value = entry[1];
+    body.append(key, value);
+  });
 
   const tokenReponseOptions = {
     method: "POST",
@@ -47,9 +50,20 @@ export default async function handler(
   );
   const tokenResponse = await requestToken.json();
 
-  if (tokenResponse.access_token)
-    return res.status(200).redirect("http://localhost:3000");
-  res
-    .status(200)
-    .json({ message: "No bearer token was received from server." });
+  if (!tokenResponse.access_token)
+    return res
+      .status(200)
+      .json({ message: "No bearer token was received from server." });
+
+  const today = new Date();
+  const expiresIn = tokenResponse.expires_in * 1000 || 0;
+  const cookieExpires = new Date(today.getTime() + expiresIn);
+
+  res.setHeader(
+    "Set-Cookie",
+    serialize("token", tokenResponse.access_token, {
+      expires: cookieExpires,
+    })
+  );
+  res.status(200).redirect("http://localhost:3000");
 }

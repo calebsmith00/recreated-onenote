@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
-import TemplateCreation from "../components/template_creation";
+import TemplateView from "../components/template_view";
 
 const ViewTemplatesPage: NextPage = () => {
-  return <TemplateCreation />;
+  return <TemplateView />;
 };
 
 export default ViewTemplatesPage;

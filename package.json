@@ -20,12 +20,14 @@
     "@microsoft/mgt-react": "^2.5.2",
     "@microsoft/microsoft-graph-client": "^3.0.2",
     "@mui/material": "^5.8.3",
+    "cookie": "^0.5.0",
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0"
   },
   "devDependencies": {
     "@microsoft/microsoft-graph-types": "^2.22.0",
+    "@types/cookie": "^0.5.1",
     "@types/node": "17.0.42",
     "@types/react": "18.0.12",
     "@types/react-dom": "18.0.5",
