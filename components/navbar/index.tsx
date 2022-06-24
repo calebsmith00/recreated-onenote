@@ -10,33 +10,22 @@ const Navbar = () => {
     setActiveLinkIndex(index);
   };
 
-  return (
-    <Tabs value={activeLinkIndex}>
-      {/* GET / */}
-      <NavLink
-        href={links.home.path}
-        value={links.home.index}
-        label={links.home.label}
-        handleLinkClick={handleLinkClick}
-      />
+  const retrieveLinks = () => {
+    const linkElements = Object.values(links);
+    return linkElements.map((link) => {
+      return (
+        <NavLink
+          key={link.index}
+          href={link.path}
+          value={link.index}
+          label={link.label}
+          handleLinkClick={handleLinkClick}
+        />
+      );
+    });
+  };
 
-      {/* GET /create-template */}
-      <NavLink
-        href={links.create_template.path}
-        value={links.create_template.index}
-        label={links.create_template.label}
-        handleLinkClick={handleLinkClick}
-      />
-
-      {/* GET /login */}
-      <NavLink
-        href={links.login.path}
-        value={links.login.index}
-        label={links.login.label}
-        handleLinkClick={handleLinkClick}
-      />
-    </Tabs>
-  );
+  return <Tabs value={activeLinkIndex}>{retrieveLinks()}</Tabs>;
 };
 
 export default Navbar;

@@ -11,9 +11,15 @@
     "label": "Create Template"
   },
 
+  "view_templates": {
+    "path": "/view-templates",
+    "index": 3,
+    "label": "View Templates"
+  },
+
   "login": {
     "path": "/login",
-    "index": 3,
+    "index": 4,
     "label": "Login"
   }
 }
