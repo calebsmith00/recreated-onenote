@@ -1,69 +1,21 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { serialize } from "cookie";
+import GraphClient from "../../../helpers/graph_client";
+import cookie from "cookie";
+const client = new GraphClient();
+
+export { client };
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { code } = req.query;
-  const { APP_ID, CLIENT_SECRET, REDIRECT_URI, CODE_VERIFIER } =
-    process.env || "";
-  if (
-    typeof code !== "string" ||
-    !code ||
-    !APP_ID ||
-    !CLIENT_SECRET ||
-    !REDIRECT_URI ||
-    !CODE_VERIFIER
-  )
+  if (!req.query.code || typeof req.query.code !== "string")
     return res
       .status(400)
-      .json({ error: true, message: "Invalid paramaters sent to server." });
+      .json({ error: true, message: "Invalid parameters sent to client." });
 
-  const tokenResponseBody = {
-    grant_type: "authorization_code",
-    code: code,
-    client_id: APP_ID,
-    redirect_uri: REDIRECT_URI,
-    code_verifier: CODE_VERIFIER,
-    client_secret: CLIENT_SECRET,
-  };
+  await client.getAccessToken(req.query.code);
 
-  const body = new URLSearchParams();
-  Object.entries(tokenResponseBody).forEach((entry) => {
-    const key = entry[0];
-    const value = entry[1];
-    body.append(key, value);
-  });
-
-  const tokenReponseOptions = {
-    method: "POST",
-    body,
-    headers: new Headers({
-      "Content-Type": "application/x-www-form-urlencoded",
-    }),
-  };
-
-  const requestToken = await fetch(
-    "https://login.microsoftonline.com/organizations/oauth2/v2.0/token",
-    tokenReponseOptions
-  );
-  const tokenResponse = await requestToken.json();
-
-  if (!tokenResponse.access_token)
-    return res
-      .status(200)
-      .json({ message: "No bearer token was received from server." });
-
-  const today = new Date();
-  const expiresIn = tokenResponse.expires_in * 1000 || 0;
-  const cookieExpires = new Date(today.getTime() + expiresIn);
-
-  res.setHeader(
-    "Set-Cookie",
-    serialize("token", tokenResponse.access_token, {
-      expires: cookieExpires,
-    })
-  );
-  res.status(200).redirect("http://localhost:3000");
+  res.setHeader("Set-Cookie", cookie.serialize("token", client.token || ""));
+  res.redirect("http://localhost:3000");
 }
