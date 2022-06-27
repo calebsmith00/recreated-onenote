@@ -9,6 +9,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const cookies = cookie.parse(req.headers.cookie || "");
+
+  console.log(cookies);
   if (!req.query.code || typeof req.query.code !== "string")
     return res
       .status(400)
@@ -16,6 +19,9 @@ export default async function handler(
 
   await client.getAccessToken(req.query.code);
 
-  res.setHeader("Set-Cookie", cookie.serialize("token", client.token || ""));
+  res.setHeader(
+    "Set-Cookie",
+    cookie.serialize("token", client.token || "", { path: "/" })
+  );
   res.redirect("http://localhost:3000");
 }
