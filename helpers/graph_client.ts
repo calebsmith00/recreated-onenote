@@ -8,6 +8,9 @@ class GraphClient {
   async getAccessToken(code: string) {
     if (typeof window !== "undefined") return;
 
+    console.log(
+      `Verifier:${process.env.CODE_VERIFIER} and Challenge:${process.env.CODE_CHALLENGE}`
+    );
     /* TOKEN */
     const tokenRequestParamaters = new URLSearchParams({
       grant_type: "authorization_code",
@@ -32,6 +35,7 @@ class GraphClient {
     const requestToken = await fetch(tokenURL, tokenRequestOptions);
     const tokenResponse = await requestToken.json();
 
+    console.log(tokenResponse);
     if (!tokenResponse || !tokenResponse.access_token) return;
 
     this.#accessToken = tokenResponse.access_token;
@@ -65,4 +69,5 @@ class GraphClient {
   }
 }
 
-export default GraphClient;
+const client = new GraphClient();
+export { client };

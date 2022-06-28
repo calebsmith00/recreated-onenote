@@ -1,9 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import GraphClient from "../../../helpers/graph_client";
 import cookie from "cookie";
-const client = new GraphClient();
-
-export { client };
+import { client } from "../../../helpers/graph_client";
 
 export default async function handler(
   req: NextApiRequest,

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { client } from "../../pages/api/auth/authorize";
+import { client } from "../../helpers/graph_client";
 
 function TemplateView() {
   const [clicked, setClicked] = useState<boolean>(false);
