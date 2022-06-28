@@ -16,12 +16,14 @@ export default function TemplateInputs({
       <TemplateInput
         handleInputChange={handleInputChange}
         name="templateName"
+        placeholder="Name of Template"
         value={templateEntry.templateName}
         templateEntry={templateEntry}
       />
       <TemplateInput
         handleInputChange={handleInputChange}
         name="templateMentor"
+        placeholder="Mentor"
         value={templateEntry.templateMentor}
         templateEntry={templateEntry}
       />

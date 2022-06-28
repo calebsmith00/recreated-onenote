@@ -22,10 +22,16 @@ export default function TemplateForm() {
     });
   };
 
-  const handleSubmit = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
-    console.log("Clicked");
+    const response = await fetch("http://localhost:3000/api/create/template", {
+      method: "POST",
+      body: JSON.stringify(entry),
+    });
+    const json = await response.json();
+
+    console.log(json);
   };
 
   const handleClear = (event: MouseEvent<HTMLButtonElement>) => {
@@ -37,14 +43,18 @@ export default function TemplateForm() {
   };
 
   return (
-    <form className={styles.templateForm}>
-      <Box className={styles.boxTest}>Asdf</Box>
-      <TemplateInputs
-        handleInputChange={handleInputChange}
-        templateEntry={entry}
-      />
+    <Box>
+      <form className={styles.templateForm}>
+        <TemplateInputs
+          handleInputChange={handleInputChange}
+          templateEntry={entry}
+        />
 
-      <TemplateButtons handleSubmit={handleSubmit} handleClear={handleClear} />
-    </form>
+        <TemplateButtons
+          handleSubmit={handleSubmit}
+          handleClear={handleClear}
+        />
+      </form>
+    </Box>
   );
 }

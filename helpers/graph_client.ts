@@ -1,3 +1,7 @@
+type ApiFetchOptions = {
+  method?: "GET" | "POST";
+};
+
 class GraphClient {
   #accessToken: string | undefined;
 
@@ -50,14 +54,18 @@ class GraphClient {
     return json;
   }
 
-  async api(endpoint: string) {
-    const foundToken = await this.accessTokenExists();
-    if (!foundToken.token) return;
-    this.#accessToken = foundToken.token;
+  async api(
+    endpoint: string,
+    token?: any,
+    options: ApiFetchOptions = { method: "GET" }
+  ) {
+    if (!token) return;
+    this.#accessToken = token.token;
 
     const response = await fetch(
       `https://graph.microsoft.com/v1.0/me/${endpoint}`,
       {
+        ...options,
         headers: new Headers({
           Authorization: `Bearer ${this.#accessToken}`,
         }),
