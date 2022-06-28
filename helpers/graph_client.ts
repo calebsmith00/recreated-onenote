@@ -37,17 +37,31 @@ class GraphClient {
     this.#accessToken = tokenResponse.access_token;
   }
 
-  async api(endpoint: string) {
-    if (!this.#accessToken) return;
-
-    const response = await fetch("https://graph.microsoft.com/v1.0/me", {
-      headers: new Headers({
-        Authorization: `Bearer ${this.#accessToken}`,
-      }),
-    });
+  async accessTokenExists() {
+    const response = await fetch(
+      `http://localhost:3000/api/retrieve/client-access`
+    );
     const json = await response.json();
 
-    console.log(json);
+    return json;
+  }
+
+  async api(endpoint: string) {
+    const foundToken = await this.accessTokenExists();
+    if (!foundToken.token) return;
+    this.#accessToken = foundToken.token;
+
+    const response = await fetch(
+      `https://graph.microsoft.com/v1.0/me/${endpoint}`,
+      {
+        headers: new Headers({
+          Authorization: `Bearer ${this.#accessToken}`,
+        }),
+      }
+    );
+    const json = await response.json();
+
+    return json;
   }
 }
 

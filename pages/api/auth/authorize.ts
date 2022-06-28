@@ -9,9 +9,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const cookies = cookie.parse(req.headers.cookie || "");
-
-  console.log(cookies);
   if (!req.query.code || typeof req.query.code !== "string")
     return res
       .status(400)
