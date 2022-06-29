@@ -49,7 +49,9 @@ export default async function handler(
   const page = await fetch("http://localhost:3000/api/retrieve/page", options);
   const pageJson = await page.json();
 
-  res
-    .status(200)
-    .json({ message: "Template created successfully!", page: pageJson });
+  res.status(200).json({
+    success: true,
+    message: "Template created successfully!",
+    page: pageJson,
+  });
 }

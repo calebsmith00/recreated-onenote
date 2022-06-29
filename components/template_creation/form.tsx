@@ -14,6 +14,18 @@ export default function TemplateForm() {
     templateName: "",
     templateMentor: "",
   });
+  const [templateCreated, setTemplateCreated] = useState({
+    success: false,
+    page: {
+      id: 0,
+      links: {
+        oneNoteWebUrl: {
+          href: null,
+        },
+      },
+      title: "",
+    },
+  });
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEntry({
@@ -31,6 +43,12 @@ export default function TemplateForm() {
       credentials: "include",
     });
     const json = await response.json();
+
+    if (json.success)
+      setTemplateCreated({
+        success: true,
+        page: json.page,
+      });
   };
 
   const handleClear = (event: MouseEvent<HTMLButtonElement>) => {
@@ -41,7 +59,13 @@ export default function TemplateForm() {
     });
   };
 
-  return (
+  return templateCreated.success ? (
+    <Box>
+      <a href={templateCreated.page.links.oneNoteWebUrl.href || undefined}>
+        {templateCreated.page.title}
+      </a>
+    </Box>
+  ) : (
     <Box>
       <form className={styles.templateForm}>
         <TemplateInputs
