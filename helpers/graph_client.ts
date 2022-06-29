@@ -46,15 +46,6 @@ class GraphClient {
     this.#accessToken = tokenResponse.access_token;
   }
 
-  async accessTokenExists() {
-    const response = await fetch(
-      `http://localhost:3000/api/retrieve/client-access`
-    );
-    const json = await response.json();
-
-    return json;
-  }
-
   async api(
     endpoint: string,
     token: string,
