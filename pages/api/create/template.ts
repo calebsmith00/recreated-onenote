@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { ApiFetchOptions, client } from "../../../helpers/graph_client";
 import errors from "../../../helpers/errors";
 import validateToken from "../../../helpers/validate_token";
-import { IdentityApiConnector } from "@microsoft/microsoft-graph-types";
 
 async function notebookExists(token: string, notebookName: string) {
   const notebook = await client.api(

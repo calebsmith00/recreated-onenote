@@ -23,6 +23,11 @@ const errors: ErrorProps = {
     error: true,
     message: "Invalid entry sent to server.",
   },
+
+  invalid_request: {
+    error: true,
+    message: "Invalid request sent to server.",
+  },
 };
 
 export default errors;
