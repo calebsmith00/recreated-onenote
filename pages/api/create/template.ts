@@ -29,6 +29,7 @@ export default async function handler(
     displayName: "Training List",
     notebookID,
   });
+
   const section = await fetch(
     "http://localhost:3000/api/retrieve/section",
     options
@@ -43,11 +44,12 @@ export default async function handler(
       </html>
     `,
     sectionID,
-    notebookID,
     title: body.templateName,
   });
   const page = await fetch("http://localhost:3000/api/retrieve/page", options);
   const pageJson = await page.json();
 
-  res.status(200).json({ message: "Template created successfully!" });
+  res
+    .status(200)
+    .json({ message: "Template created successfully!", page: pageJson });
 }
