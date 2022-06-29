@@ -15,7 +15,7 @@ export default async function handler(
 
   res.setHeader(
     "Set-Cookie",
-    cookie.serialize("token", client.token || "", { path: "/" })
+    cookie.serialize("token", client.token || "", { path: "/", httpOnly: true })
   );
   res.redirect("http://localhost:3000");
 }

@@ -25,7 +25,7 @@ export default function TemplateForm() {
   const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
-    const response = await fetch("http://localhost:3000/api/create/test", {
+    const response = await fetch("http://localhost:3000/api/create/template", {
       method: "POST",
       body: JSON.stringify(entry),
       credentials: "include",

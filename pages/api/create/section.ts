@@ -8,9 +8,10 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const token = validateToken(req);
+  const body = JSON.parse(req.body || "");
   if (typeof token !== "string")
     return res.status(400).json(errors.invalid_token);
-  if (!req.body) return res.status(400).json(errors.invalid_entry);
+  if (!body) return res.status(400).json(errors.invalid_entry);
 
   const options: ApiFetchOptions = {
     method: "POST",
@@ -19,12 +20,12 @@ export default async function handler(
     },
   };
 
-  const notebook = await client.api(
-    "onenote/notebooks",
+  const section = await client.api(
+    `onenote/notebooks/${body.notebookID}/sections`,
     token,
     options,
-    req.body
+    JSON.stringify(body)
   );
 
-  res.status(200).json(notebook);
+  res.status(200).json(section);
 }
