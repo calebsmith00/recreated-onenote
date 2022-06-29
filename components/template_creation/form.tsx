@@ -30,8 +30,6 @@ export default function TemplateForm() {
       body: JSON.stringify(entry),
     });
     const json = await response.json();
-
-    console.log(json);
   };
 
   const handleClear = (event: MouseEvent<HTMLButtonElement>) => {

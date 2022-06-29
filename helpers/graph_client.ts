@@ -1,5 +1,10 @@
-type ApiFetchOptions = {
+type ApiHeaders = {
+  [key: string]: string;
+};
+
+export type ApiFetchOptions = {
   method?: "GET" | "POST";
+  headers?: ApiHeaders;
 };
 
 class GraphClient {
@@ -12,9 +17,6 @@ class GraphClient {
   async getAccessToken(code: string) {
     if (typeof window !== "undefined") return;
 
-    console.log(
-      `Verifier:${process.env.CODE_VERIFIER} and Challenge:${process.env.CODE_CHALLENGE}`
-    );
     /* TOKEN */
     const tokenRequestParamaters = new URLSearchParams({
       grant_type: "authorization_code",
@@ -39,7 +41,6 @@ class GraphClient {
     const requestToken = await fetch(tokenURL, tokenRequestOptions);
     const tokenResponse = await requestToken.json();
 
-    console.log(tokenResponse);
     if (!tokenResponse || !tokenResponse.access_token) return;
 
     this.#accessToken = tokenResponse.access_token;
@@ -56,19 +57,22 @@ class GraphClient {
 
   async api(
     endpoint: string,
-    token?: any,
-    options: ApiFetchOptions = { method: "GET" }
+    token: string,
+    options: ApiFetchOptions = { method: "GET" },
+    body?: any
   ) {
     if (!token) return;
-    this.#accessToken = token.token;
+    this.#accessToken = token;
 
     const response = await fetch(
       `https://graph.microsoft.com/v1.0/me/${endpoint}`,
       {
         ...options,
         headers: new Headers({
+          ...options.headers,
           Authorization: `Bearer ${this.#accessToken}`,
         }),
+        body: body || undefined,
       }
     );
     const json = await response.json();
