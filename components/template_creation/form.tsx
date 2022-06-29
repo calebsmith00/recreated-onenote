@@ -16,6 +16,7 @@ export default function TemplateForm() {
   });
   const [templateCreated, setTemplateCreated] = useState({
     success: false,
+    error: false,
     page: {
       id: 0,
       links: {
@@ -44,8 +45,14 @@ export default function TemplateForm() {
     });
     const json = await response.json();
 
+    if (json.error)
+      setTemplateCreated({
+        ...templateCreated,
+        error: true,
+      });
     if (json.success)
       setTemplateCreated({
+        error: false,
         success: true,
         page: json.page,
       });
@@ -58,7 +65,6 @@ export default function TemplateForm() {
       templateMentor: "",
     });
   };
-
   return templateCreated.success ? (
     <Box>
       <a href={templateCreated.page.links.oneNoteWebUrl.href || undefined}>
@@ -78,6 +84,12 @@ export default function TemplateForm() {
           handleClear={handleClear}
         />
       </form>
+
+      {templateCreated.error && (
+        <p style={{ textAlign: "center" }}>
+          There seems to be an error when creating your template.
+        </p>
+      )}
     </Box>
   );
 }

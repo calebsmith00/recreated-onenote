@@ -18,7 +18,7 @@ export default async function handler(
       `onenote/sections/${body.sectionID}/pages?$filter=title eq '${body.title}'`,
       token
     );
-
+    if (page.error) return res.status(400).json(errors.invalid_request);
     if (page.value.length > 0) return res.status(200).json(page.value[0]); // Returns the current page if one exists
     const createPage = await fetch("http://localhost:3000/api/create/page", {
       method: "POST",

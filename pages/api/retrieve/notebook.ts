@@ -21,6 +21,7 @@ export default async function handler(
       token
     );
 
+    if (notebook.error) return res.status(400).json(errors.invalid_request);
     if (notebook.value.length > 0)
       return res.status(200).json(notebook.value[0]); // Returns the current notebook if one exists
     const createNotebook = await fetch(

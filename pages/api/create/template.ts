@@ -23,6 +23,7 @@ export default async function handler(
     options
   );
   const notebookJson = await notebook.json();
+  if (notebookJson.error) return res.status(400).json(errors.invalid_request);
   const notebookID = notebookJson.id;
 
   options.body = JSON.stringify({
@@ -35,7 +36,9 @@ export default async function handler(
     options
   );
   const sectionJson = await section.json();
+  if (sectionJson.error) return res.status(400).json(errors.invalid_request);
   const sectionID = sectionJson.id;
+
   options.body = JSON.stringify({
     html: `
       <html>
@@ -49,6 +52,7 @@ export default async function handler(
   const page = await fetch("http://localhost:3000/api/retrieve/page", options);
   const pageJson = await page.json();
 
+  if (pageJson.error) return res.status(400).json(errors.invalid_request);
   res.status(200).json({
     success: true,
     message: "Template created successfully!",

@@ -19,7 +19,7 @@ export default async function handler(
       `onenote/notebooks/${body.notebookID}/sections?$filter=displayName eq '${body.displayName}'`,
       token
     );
-
+    if (section.error) return res.status(400).json(errors.invalid_request);
     if (section.value.length > 0) return res.status(200).json(section.value[0]); // Returns the current section if one exists
     const createSection = await fetch(
       "http://localhost:3000/api/create/section",
