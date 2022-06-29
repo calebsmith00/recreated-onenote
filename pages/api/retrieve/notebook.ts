@@ -9,7 +9,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "GET") return res.status(200).json(errors.invalid_request);
-  req.cookies = JSON.parse(req.headers.cookie || "");
+
   const token = validateToken(req);
   const body = JSON.parse(req.body);
   if (typeof token !== "string") return res.status(400).json(token);
@@ -37,7 +37,6 @@ export default async function handler(
 
     res.status(200).json(json);
   } catch (err) {
-    console.log(err);
     return res.status(400).json(errors.invalid_request);
   }
 }
