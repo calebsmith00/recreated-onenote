@@ -4,6 +4,15 @@ import errors from "../../../helpers/errors";
 import { ApiFetchOptions } from "../../../helpers/graph_client";
 import validateToken from "../../../helpers/validate_token";
 
+function validateBody(requestBody: string) {
+  try {
+    const body = JSON.parse(requestBody);
+    if (body && typeof body === "object") return body;
+  } catch (e) {
+    return false;
+  }
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -11,9 +20,10 @@ export default async function handler(
   if (req.method === "GET") return res.status(200).json(errors.invalid_request);
 
   const token = validateToken(req);
-  const body = JSON.parse(req.body);
+  const body = validateBody(JSON.stringify(req.body) || "");
+
   if (typeof token !== "string") return res.status(400).json(token);
-  if (body === undefined) return res.status(400).json(errors.invalid_entry);
+  if (!body) return res.status(400).json(errors.invalid_entry);
 
   try {
     const notebook = await client.api(

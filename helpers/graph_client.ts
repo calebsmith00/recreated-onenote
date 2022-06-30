@@ -56,7 +56,7 @@ class GraphClient {
     this.#accessToken = token;
 
     const response = await fetch(
-      `https://graph.microsoft.com/v1.0/users/47a47d88-e558-4726-a0f9-64b2bc8c2082/${endpoint}`,
+      `https://graph.microsoft.com/v1.0/me/${endpoint}`,
       {
         ...options,
         headers: new Headers({
