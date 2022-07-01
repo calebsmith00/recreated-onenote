@@ -5,7 +5,7 @@ import retrieveHTML from "./handle_training_data";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 400 },
-  { field: "sample", headerName: "Sample", width: 70 },
+  { field: "sample", headerName: "Sample", width: 200 },
 ];
 
 export default function TemplateTrainingTable({ template }: { template: any }) {
