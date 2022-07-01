@@ -3,6 +3,7 @@ import { client } from "../../../helpers/graph_client";
 import errors from "../../../helpers/errors";
 import { ApiFetchOptions } from "../../../helpers/graph_client";
 import validateToken from "../../../helpers/validate_token";
+import validateBody from "../../../helpers/validate_body";
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,9 +12,9 @@ export default async function handler(
   if (req.method === "GET") return res.status(200).json(errors.invalid_request);
 
   const token = validateToken(req);
-  const body = JSON.parse(req.body);
+  const body = validateBody(req.body);
   if (typeof token !== "string") return res.status(400).json(token);
-  if (body === undefined) return res.status(400).json(errors.invalid_entry);
+  if (!body) return res.status(400).json(errors.invalid_entry);
 
   try {
     const notebook = await client.api(

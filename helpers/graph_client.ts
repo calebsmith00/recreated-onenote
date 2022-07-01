@@ -49,26 +49,29 @@ class GraphClient {
   async api(
     endpoint: string,
     token: string,
-    options: ApiFetchOptions = { method: "GET" },
-    body?: any
+    body?: any,
+    requestType: "json" | "html" = "json",
+    options: ApiFetchOptions = { method: "GET" }
   ) {
     if (!token) return;
     this.#accessToken = token;
 
-    const response = await fetch(
-      `https://graph.microsoft.com/v1.0/users/47a47d88-e558-4726-a0f9-64b2bc8c2082/${endpoint}`,
-      {
-        ...options,
-        headers: new Headers({
-          ...options.headers,
-          Authorization: `Bearer ${this.#accessToken}`,
-        }),
-        body: body || undefined,
-      }
-    );
-    const json = await response.json();
+    const apiFetchConfig: RequestInit = {
+      ...options,
+      headers: new Headers({
+        ...options.headers,
+        Authorization: `Bearer ${this.#accessToken}`,
+      }),
+    };
 
-    return json;
+    if (body) apiFetchConfig["body"] = body;
+    const response = await fetch(
+      `https://graph.microsoft.com/v1.0/me/${endpoint}`,
+      apiFetchConfig
+    );
+    return requestType === "json"
+      ? await response.json()
+      : await response.text();
   }
 }
 
