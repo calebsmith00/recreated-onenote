@@ -3,7 +3,7 @@ type ApiHeaders = {
 };
 
 export type ApiFetchOptions = {
-  method?: "GET" | "POST";
+  method?: "GET" | "POST" | "PATCH";
   headers?: ApiHeaders;
 };
 

@@ -16,6 +16,7 @@ export default async function handler(
   if (req.method === "GET") return res.status(200).json(errors.invalid_request);
   const token = validateToken(req);
   const body = validateBody(req.body);
+
   if (typeof token !== "string") return res.status(400).json(token);
   if (!body) return res.status(400).json(errors.invalid_entry);
 

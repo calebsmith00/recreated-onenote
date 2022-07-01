@@ -29,27 +29,7 @@ export default function retrieveHTML(html: string) {
     }
   });
 
-  // const separateElements: any[] = [];
-  // let numberOfRows: number = 0;
-  // elements.map((element) => {
-  //   for (let i = 0; i < element.elements.length; i++) {
-  //     const text = element.elements[i].innerText.trim();
-  //     if (text === "") continue;
-  //     if (element.category === "tr") numberOfRows++;
-  //     // Ugly code, but tr is the the table row and the iteration variable is used to identify which row the data belongs to
-  //     const categoryName =
-  //       element.category === "tr" ? `td_${i}` : element.category;
-  //     const parsedElement = {
-  //       category: categoryName,
-  //       text: element.elements[i].innerText.trim,
-  //     };
-
-  //     separateElements.push(parsedElement);
-  //   }
-  // });
-
   return {
-    numberOfRows: 0,
     elements,
   };
 }

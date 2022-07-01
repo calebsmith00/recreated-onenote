@@ -28,7 +28,7 @@ export default function TemplateTrainingTable({ template }: { template: any }) {
 
       const pageContent = await response.text();
 
-      const { numberOfRows, elements } = retrieveHTML(pageContent);
+      const { elements } = retrieveHTML(pageContent);
       const tableRows = elements.filter((element) => element.category === "tr");
       tableRows.map((element) => {
         if (!element.elements) return;
