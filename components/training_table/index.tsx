@@ -31,6 +31,17 @@ export default function TrainingTable() {
   };
   return (
     <Box>
+      <h1
+        style={{
+          width: "50%",
+          margin: "auto",
+          textAlign: "center",
+          fontFamily: "Arial",
+          color: "#787878",
+        }}
+      >
+        Add Trainings Below 👇
+      </h1>
       <form className={styles.trainingForm}>
         <TextField
           label="Training Title"

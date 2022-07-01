@@ -37,7 +37,6 @@ export default function TemplateTrainingTable({ template }: { template: any }) {
 
         for (let i = 0; i < rowLength; ++i) {
           const text = rowData[i].innerText.trim();
-          console.log(rowData[i].id);
           if (text === "") continue;
           setRows((prevState) => [
             ...prevState,

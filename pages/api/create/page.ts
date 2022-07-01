@@ -9,10 +9,10 @@ export default async function handler(
 ) {
   const token = validateToken(req);
   const body = JSON.parse(req.body || "");
+
   if (typeof token !== "string")
     return res.status(400).json(errors.invalid_token);
   if (!body) return res.status(400).json(errors.invalid_entry);
-
   const options: ApiFetchOptions = {
     method: "POST",
     headers: {
@@ -23,8 +23,9 @@ export default async function handler(
   const page = await client.api(
     `onenote/sections/${body.sectionID}/pages`,
     token,
-    options,
-    body.html
+    body.html,
+    "json",
+    options
   );
 
   res.status(200).json(page);

@@ -7,7 +7,14 @@ export default function validateToken(req: NextApiRequest) {
       return req.cookies.token;
 
     if (req.headers.authorization) {
-      return req.headers.authorization;
+      const isBearer = req.headers.authorization.substring(0, 6) === "Bearer";
+      return isBearer
+        ? req.headers.authorization.substring(7)
+        : req.headers.authorization;
+    }
+
+    if (req.headers.cookie) {
+      return JSON.parse(req.headers.cookie).token;
     }
   } catch (e) {
     console.error(`Error at validateToken: ${e}`);

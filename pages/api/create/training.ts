@@ -71,8 +71,7 @@ export default async function handler(
       }
     );
 
-    console.log(response);
-    res.status(200).json({ message: "Hello" });
+    res.status(200).json({ message: "Hello", response });
   } catch (e) {
     console.error(`Error has occurred at /api/create/training ${e}`);
     res.status(400).json({ error: true });

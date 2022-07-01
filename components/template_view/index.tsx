@@ -90,6 +90,17 @@ function TemplateView() {
 
   return (
     <>
+      <h1
+        style={{
+          color: "#787878",
+          width: "50%",
+          textAlign: "center",
+          margin: "auto",
+          fontFamily: "Arial",
+        }}
+      >
+        View Templates 👉🥺👈
+      </h1>
       <SelectTemplate templates={templates} />
     </>
   );

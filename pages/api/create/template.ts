@@ -1,28 +1,36 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import errors from "../../../helpers/errors";
+import validateBody from "../../../helpers/validate_body";
+import validateToken from "../../../helpers/validate_token";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const body = JSON.parse(req.body);
+  const token = validateToken(req);
+  const body = validateBody(JSON.parse(req.body));
   if (!body || !body.templateName)
     return res.status(400).json(errors.invalid_entry);
+  if (typeof token !== "string") return res.status(400).json(token);
+
   const options: RequestInit = {
     method: "POST",
     credentials: "include",
     headers: new Headers({
-      Cookie: `${JSON.stringify(req.cookies)}`,
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     }),
     body: JSON.stringify({
       displayName: "Master Notebooks",
     }),
   };
+
   const notebook = await fetch(
     "http://localhost:3000/api/retrieve/notebook",
     options
   );
   const notebookJson = await notebook.json();
+
   if (notebookJson.error) return res.status(400).json(errors.invalid_request);
   const notebookID = notebookJson.id;
 

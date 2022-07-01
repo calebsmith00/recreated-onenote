@@ -23,8 +23,9 @@ export default async function handler(
   const section = await client.api(
     `onenote/notebooks/${body.notebookID}/sections`,
     token,
-    options,
-    JSON.stringify(body)
+    JSON.stringify(body),
+    "json",
+    options
   );
 
   res.status(200).json(section);

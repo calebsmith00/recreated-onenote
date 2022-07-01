@@ -5,15 +5,6 @@ import { ApiFetchOptions } from "../../../helpers/graph_client";
 import validateToken from "../../../helpers/validate_token";
 import validateBody from "../../../helpers/validate_body";
 
-function validateBody(requestBody: string) {
-  try {
-    const body = JSON.parse(requestBody);
-    if (body && typeof body === "object") return body;
-  } catch (e) {
-    return false;
-  }
-}
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -22,9 +13,9 @@ export default async function handler(
 
   const token = validateToken(req);
   const body = validateBody(req.body);
+
   if (typeof token !== "string") return res.status(400).json(token);
   if (!body) return res.status(400).json(errors.invalid_entry);
-
   try {
     const notebook = await client.api(
       `onenote/notebooks?$filter=displayName eq '${body.displayName}'`,

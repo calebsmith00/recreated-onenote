@@ -7,17 +7,47 @@ type SelectTemplateProps = {
 
 export default function SelectTemplate({ templates }: SelectTemplateProps) {
   const [selectedTemplate, setSelectedTemplate] = useState();
-  useEffect(() => {}, [templates]);
+  const [loaded, setLoaded] = useState<boolean>(false);
 
-  return (
+  useEffect(() => {
+    if (templates.length < 1) return;
+    setLoaded(true);
+  }, [templates]);
+
+  return loaded ? (
     <>
       {templates.map((template: any) => (
-        <p key={template.id} onClick={() => setSelectedTemplate(template)}>
-          {template.title}
+        <p
+          style={{
+            width: "50%",
+            margin: "auto",
+            textAlign: "center",
+            fontFamily: "Arial",
+            fontSize: "18px",
+            lineHeight: "2",
+          }}
+          key={template.id}
+          onClick={() => setSelectedTemplate(template)}
+        >
+          Template Name: {template.title}
         </p>
       ))}
 
       <TemplateTrainingTable template={selectedTemplate} />
+    </>
+  ) : (
+    <>
+      <p
+        style={{
+          width: "50%",
+          margin: "auto",
+          textAlign: "center",
+          fontFamily: "Arial",
+          fontSize: "18px",
+        }}
+      >
+        Loading your templates, please wait a couple years!
+      </p>
     </>
   );
 }

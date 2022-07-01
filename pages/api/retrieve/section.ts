@@ -22,10 +22,9 @@ export default async function handler(
 
   if (typeof token !== "string") return res.status(400).json(token);
   if (!body) return res.status(400).json(errors.invalid_entry);
-
   // If all the parameters pass validation, make a query attempt
   const notebookID = body.notebookID
-    ? `notebooks/${body.notebookID}`
+    ? `notebooks/${body.notebookID}/sections`
     : `sections`;
   const sectionRequestURI = `onenote/${notebookID}?$filter=displayName eq '${body.displayName}'`;
   try {
