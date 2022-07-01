@@ -21,23 +21,12 @@ export default async function handler(
   if (!body) return res.status(400).json(errors.invalid_entry);
 
   try {
-    const page = await client.api(
-      `onenote/sections/${body.sectionID}/pages?$filter=title eq '${body.title}'`,
+    const pages = await client.api(
+      `onenote/sections/${body.sectionID}/pages`,
       token
     );
-
-    if (page.error) return res.status(400).json(errors.invalid_request);
-    if (page.value.length > 0) return res.status(200).json(page.value[0]); // Returns the current page if one exists
-    const createPage = await fetch("http://localhost:3000/api/create/page", {
-      method: "POST",
-      headers: {
-        Cookie: JSON.stringify(req.cookies),
-      },
-      body: JSON.stringify(body),
-    });
-    const json = await createPage.json();
-
-    res.status(200).json(json);
+    if (pages.error) return res.status(400).json(errors.invalid_request);
+    if (pages.value.length > 0) return res.status(200).json(pages.value); // Returns the current page if one exists
   } catch (err) {
     console.log(err);
     return res.status(400).json(errors.invalid_request);

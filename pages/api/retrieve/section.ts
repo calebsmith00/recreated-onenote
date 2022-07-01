@@ -1,24 +1,35 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { client } from "../../../helpers/graph_client";
 import errors from "../../../helpers/errors";
-import { ApiFetchOptions } from "../../../helpers/graph_client";
 import validateToken from "../../../helpers/validate_token";
+import validateBody from "../../../helpers/validate_body";
+
+/* 
+  BODY PARAMETERS:
+  displayName: string;
+  notebookID?: string;
+*/
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  // The lines below handle common errors
   if (req.method === "GET") return res.status(200).json(errors.invalid_request);
-  const token = validateToken(req);
-  const body = JSON.parse(req.body);
-  if (typeof token !== "string") return res.status(400).json(token);
-  if (body === undefined) return res.status(400).json(errors.invalid_entry);
 
+  const token = validateToken(req);
+  const body = validateBody(req.body);
+
+  if (typeof token !== "string") return res.status(400).json(token);
+  if (!body) return res.status(400).json(errors.invalid_entry);
+
+  // If all the parameters pass validation, make a query attempt
+  const notebookID = body.notebookID
+    ? `notebooks/${body.notebookID}`
+    : `sections`;
+  const sectionRequestURI = `onenote/${notebookID}?$filter=displayName eq '${body.displayName}'`;
   try {
-    const section = await client.api(
-      `onenote/notebooks/${body.notebookID}/sections?$filter=displayName eq '${body.displayName}'`,
-      token
-    );
+    const section = await client.api(sectionRequestURI, token);
     if (section.error) return res.status(400).json(errors.invalid_request);
     if (section.value.length > 0) return res.status(200).json(section.value[0]); // Returns the current section if one exists
     const createSection = await fetch(
@@ -35,7 +46,7 @@ export default async function handler(
 
     res.status(200).json(json);
   } catch (err) {
-    console.log(err);
+    console.log(`Error has occurred in /api/retrieve/section: ${err}`);
     return res.status(400).json(errors.invalid_request);
   }
 }

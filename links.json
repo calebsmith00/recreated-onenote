@@ -17,9 +17,15 @@
     "label": "View Templates"
   },
 
+  "add_trainings": {
+    "path": "/add-trainings",
+    "index": 4,
+    "label": "Add Trainings"
+  },
+
   "login": {
     "path": "/login",
-    "index": 4,
+    "index": 5,
     "label": "Login"
   }
 }

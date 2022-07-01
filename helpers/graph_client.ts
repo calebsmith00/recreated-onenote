@@ -3,7 +3,7 @@ type ApiHeaders = {
 };
 
 export type ApiFetchOptions = {
-  method?: "GET" | "POST";
+  method?: "GET" | "POST" | "PATCH";
   headers?: ApiHeaders;
 };
 
@@ -49,26 +49,29 @@ class GraphClient {
   async api(
     endpoint: string,
     token: string,
-    options: ApiFetchOptions = { method: "GET" },
-    body?: any
+    body?: any,
+    requestType: "json" | "html" = "json",
+    options: ApiFetchOptions = { method: "GET" }
   ) {
     if (!token) return;
     this.#accessToken = token;
 
+    const apiFetchConfig: RequestInit = {
+      ...options,
+      headers: new Headers({
+        ...options.headers,
+        Authorization: `Bearer ${this.#accessToken}`,
+      }),
+    };
+
+    if (body) apiFetchConfig["body"] = body;
     const response = await fetch(
       `https://graph.microsoft.com/v1.0/me/${endpoint}`,
-      {
-        ...options,
-        headers: new Headers({
-          ...options.headers,
-          Authorization: `Bearer ${this.#accessToken}`,
-        }),
-        body: body || undefined,
-      }
+      apiFetchConfig
     );
-    const json = await response.json();
-
-    return json;
+    return requestType === "json"
+      ? await response.json()
+      : await response.text();
   }
 }
 
