@@ -15,11 +15,11 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "GET") return res.status(200).json(errors.invalid_request);
-
   const token = validateToken(req);
   const body = validateBody(req.body);
 
-  if (typeof token !== "string") return res.status(400).json(token);
+  if (typeof token !== "string")
+    return res.status(400).json(errors.invalid_token);
   if (!body) return res.status(400).json(errors.invalid_entry);
   try {
     const notebook = await client.api(
@@ -27,6 +27,7 @@ export default async function handler(
       token
     );
 
+    console.log(notebook);
     if (notebook.error) return res.status(400).json(errors.invalid_request);
     if (notebook.value.length > 0)
       return res.status(200).json(notebook.value[0]); // Returns the current notebook if one exists

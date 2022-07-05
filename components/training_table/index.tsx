@@ -13,6 +13,11 @@ export default function TrainingTable() {
   const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
+    const requestBody = {
+      pageID: "",
+      trainingTitle: title,
+    };
+
     const response = await fetch("http://localhost:3000/api/create/training", {
       method: "POST",
       headers: {
