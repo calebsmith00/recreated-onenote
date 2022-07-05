@@ -45,7 +45,7 @@ export default async function handler(
 
     res.status(200).json(json);
   } catch (err) {
-    console.log(`Error has occurred in /api/retrieve/section: ${err}`);
+    console.error(`Error has occurred in /api/retrieve/section: ${err}`);
     return res.status(400).json(errors.invalid_request);
   }
 }

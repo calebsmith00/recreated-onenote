@@ -27,8 +27,9 @@ export default function TrainingTable() {
 
     const json = await response.json();
 
-    console.log(json);
+    return json;
   };
+
   return (
     <Box>
       <h1
@@ -40,7 +41,7 @@ export default function TrainingTable() {
           color: "#787878",
         }}
       >
-        Add Trainings Below 👇
+        Add Trainings Below
       </h1>
       <form className={styles.trainingForm}>
         <TextField

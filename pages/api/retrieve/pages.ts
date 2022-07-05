@@ -28,7 +28,7 @@ export default async function handler(
     if (pages.error) return res.status(400).json(errors.invalid_request);
     if (pages.value.length > 0) return res.status(200).json(pages.value); // Returns the current page if one exists
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return res.status(400).json(errors.invalid_request);
   }
 }

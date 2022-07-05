@@ -30,7 +30,7 @@ function TemplateView() {
         const section = await response.json();
         return section;
       } catch (e) {
-        console.log(`Error at GetSection(): ${e}`);
+        console.error(`Error at GetSection(): ${e}`);
         return false;
       }
     }
@@ -78,14 +78,12 @@ function TemplateView() {
 
         setPage(page);
       } catch (e) {
-        console.log(`Error at GetPage(): ${e}`);
+        console.error(`Error at GetPage(): ${e}`);
         return false;
       }
     }
 
     GetPages();
-
-    return () => console.log("Data retrieved");
   }, []);
 
   return (
@@ -99,7 +97,7 @@ function TemplateView() {
           fontFamily: "Arial",
         }}
       >
-        View Templates 👉🥺👈
+        View Templates
       </h1>
       <SelectTemplate templates={templates} />
     </>

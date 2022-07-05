@@ -40,7 +40,7 @@ export default async function handler(
 
     res.status(200).json(json);
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return res.status(400).json(errors.invalid_request);
   }
 }

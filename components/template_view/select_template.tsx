@@ -46,7 +46,7 @@ export default function SelectTemplate({ templates }: SelectTemplateProps) {
           fontSize: "18px",
         }}
       >
-        Loading your templates, please wait a couple years!
+        Loading your templates, this might take a few minutes.
       </p>
     </>
   );

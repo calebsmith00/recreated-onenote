@@ -74,7 +74,7 @@ export default function TemplateForm() {
   ) : (
     <Box>
       <form className={styles.templateForm}>
-        <h1 style={{ color: "#787878" }}>Create a Template 😱</h1>
+        <h1 style={{ color: "#787878" }}>Create a Template</h1>
         <TemplateInputs
           handleInputChange={handleInputChange}
           templateEntry={entry}

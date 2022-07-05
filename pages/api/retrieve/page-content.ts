@@ -30,7 +30,7 @@ export default async function handler(
     if (pageContent.error) return res.status(400).json(errors.invalid_request);
     if (pageContent) return res.status(200).send(pageContent); // Returns the current page content if one exists
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return res.status(400).json(errors.invalid_request);
   }
 }
