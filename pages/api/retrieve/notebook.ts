@@ -5,6 +5,11 @@ import { ApiFetchOptions } from "../../../helpers/graph_client";
 import validateToken from "../../../helpers/validate_token";
 import validateBody from "../../../helpers/validate_body";
 
+/*
+  BODY PARAMETERS:
+  displayName: string;
+*/
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
