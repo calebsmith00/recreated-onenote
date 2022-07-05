@@ -3,7 +3,10 @@
     "allowUnknownTags": true,
     "dictionaries": ["jsdoc", "closure"]
   },
-  "plugins": ["node_modules/better-docs/typescript"],
+  "plugins": [
+    "node_modules/better-docs/typescript",
+    "node_modules/better-docs/category"
+  ],
   "source": {
     "include": ["./pages", "./components"],
     "includePattern": "\\.(jsx|js|ts|tsx)$"

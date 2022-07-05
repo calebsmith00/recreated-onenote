@@ -9,10 +9,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 /**
  * API route is used to request all available data from OneNote (notebook(s), section(s), page(s))
+ * @category API Routes
  * @namespace RetrieveAllContent
  * @param body {string} Value
  * @function
- * @category API Routes
  * @returns Response code
  */
 export default async function handler(
