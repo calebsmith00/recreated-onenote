@@ -1,7 +1,7 @@
 import Tab from "@mui/material/Tab";
 import Link from "next/link";
 import { SetStateAction, useEffect, useState, Dispatch } from "react";
-import links from "../../links.json" assert { type: "json" };
+import links from "../../links.json";
 
 type NavLinkProps = {
   href: string;

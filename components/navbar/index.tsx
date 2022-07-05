@@ -1,7 +1,7 @@
 import Tabs from "@mui/material/Tabs";
 import { useState } from "react";
 import NavLink from "./navlink";
-import links from "../../links.json" assert { type: "json" };
+import links from "../../links.json";
 
 const Navbar = () => {
   const [activeLinkIndex, setActiveLinkIndex] = useState<number>(1);
