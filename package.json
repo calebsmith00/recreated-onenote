@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "docs": "jsdoc -c ./jsdoc.json"
+    "docs": "npx typedoc --options ./typedoc.json"
   },
   "dependencies": {
     "@azure/identity": "^2.0.5",

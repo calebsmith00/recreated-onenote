@@ -1,12 +1,20 @@
+/**
+ * @packageDocumentation
+ * @module TemplateButtons
+ */
+
 import { Button, ButtonGroup } from "@mui/material";
 import { MouseEventHandler } from "react";
 import styles from "./button.module.scss";
 
-type ButtonProps = {
+export type ButtonProps = {
   handleSubmit: MouseEventHandler<HTMLButtonElement>;
   handleClear: MouseEventHandler<HTMLButtonElement>;
 };
 
+/**
+ * @category Components
+ */
 export default function TemplateButtons({
   handleSubmit,
   handleClear,

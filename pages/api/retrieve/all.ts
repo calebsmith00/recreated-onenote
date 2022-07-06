@@ -12,6 +12,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 */
 
 /**
+ * Endpoint: /api/retrieve/all
  * @category ApiPages
  */
 export default async function handler(

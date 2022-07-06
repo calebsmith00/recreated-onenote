@@ -1,8 +1,16 @@
+/**
+ * @packageDocumentation
+ * @module TrainingTable
+ */
+
 import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { ChangeEvent, MouseEvent, useState } from "react";
 import styles from "./index.module.scss";
 
+/**
+ * @category Components
+ */
 export default function TrainingTable() {
   const [title, setTitle] = useState<string>("");
 

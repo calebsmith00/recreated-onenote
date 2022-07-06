@@ -3,6 +3,9 @@ import { useState } from "react";
 import NavLink from "./navlink";
 import links from "../../links.json";
 
+/**
+ * @category Components
+ */
 const Navbar = () => {
   const [activeLinkIndex, setActiveLinkIndex] = useState<number>(1);
 

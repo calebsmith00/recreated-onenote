@@ -8,6 +8,7 @@ import cookie from "cookie";
 import { client } from "../../../helpers/graph_client";
 
 /**
+ * Endpoint: /api/auth/authorize
  * @category ApiPages
  */
 export default async function handler(

@@ -9,6 +9,7 @@ import validateBody from "../../../helpers/validate_body";
 import validateToken from "../../../helpers/validate_token";
 
 /**
+ * Endpoint: /api/create/template
  * @category ApiPages
  */
 export default async function handler(

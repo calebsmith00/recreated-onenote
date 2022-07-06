@@ -15,6 +15,7 @@ import validateBody from "../../../helpers/validate_body";
 */
 
 /**
+ * Endpoint: /api/retrieve/page-content
  * @category ApiPages
  */
 export default async function handler(

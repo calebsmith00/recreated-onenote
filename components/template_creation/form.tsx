@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module TemplateForm
+ */
+
 import { ChangeEvent, MouseEvent, useState } from "react";
 import TemplateButtons from "./buttons";
 import TemplateInputs from "./inputs";
@@ -9,6 +14,9 @@ export type FormData = {
   templateMentor: string | undefined;
 };
 
+/**
+ * @category Components
+ */
 export default function TemplateForm() {
   const [entry, setEntry] = useState<FormData>({
     templateName: "",

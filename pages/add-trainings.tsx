@@ -1,13 +1,22 @@
+/**
+ * @packageDocumentation
+ * @module AddTrainings
+ */
+
 import type { NextPage, NextPageContext } from "next";
 import TrainingTable from "../components/training_table";
 
 /**
+ * Endpoint: /add-trainings
  * @category Pages
  */
 const AddTrainings: NextPage = () => {
   return <TrainingTable />;
 };
 
+/**
+ * @hidden
+ */
 export async function getServerSideProps(context: NextPageContext) {
   const requestNotebookBody = {
     displayName: "Master Notebooks",

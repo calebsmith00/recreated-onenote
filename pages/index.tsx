@@ -6,6 +6,7 @@
 import type { NextPage } from "next";
 
 /**
+ * Endpoint: /
  * @category Pages
  */
 const HomePage: NextPage = () => {

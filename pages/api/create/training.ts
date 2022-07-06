@@ -17,6 +17,7 @@ import { parse } from "node-html-parser";
 */
 
 /**
+ * Endpoint: /api/create/training
  * @category ApiPages
  */
 export default async function handler(

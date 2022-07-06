@@ -1,10 +1,18 @@
+/**
+ * @packageDocumentation
+ * @module SelectTemplate
+ */
+
 import { useEffect, useState } from "react";
 import TemplateTrainingTable from "./template_training_table";
 
-type SelectTemplateProps = {
+export type SelectTemplateProps = {
   templates: any;
 };
 
+/**
+ * @category Components
+ */
 export default function SelectTemplate({ templates }: SelectTemplateProps) {
   const [selectedTemplate, setSelectedTemplate] = useState();
   const [loaded, setLoaded] = useState<boolean>(false);

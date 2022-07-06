@@ -1,13 +1,16 @@
+/**
+ * @packageDocumentation
+ * @module TemplateView
+ */
+
 import { useEffect, useState } from "react";
 import SelectTemplate from "./select_template";
 
 /**
  * A RequestInit object to hold common properties used in a fetch request
+ * @category Configuration
  */
 export const genericFetchOptions: RequestInit = {
-  /**
-   * Method used in the fetch request
-   */
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -16,6 +19,9 @@ export const genericFetchOptions: RequestInit = {
   body: undefined,
 };
 
+/**
+ * @category Components
+ */
 function TemplateView() {
   const [templates, setTemplates] = useState([]);
   const [page, setPage] = useState();

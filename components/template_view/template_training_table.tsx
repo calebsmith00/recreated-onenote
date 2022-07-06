@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module TemplateTrainingTable
+ */
+
 import { useEffect, useState } from "react";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { genericFetchOptions } from ".";
@@ -8,6 +13,10 @@ const columns: GridColDef[] = [
   { field: "sample", headerName: "Sample", width: 200 },
 ];
 
+/**
+ * @category Components
+ * @param props
+ */
 export default function TemplateTrainingTable({ template }: { template: any }) {
   const [rows, setRows] = useState<any[]>([]);
   async function GetPageContent() {

@@ -9,6 +9,7 @@ import { ApiFetchOptions, client } from "../../../helpers/graph_client";
 import validateToken from "../../../helpers/validate_token";
 
 /**
+ * Endpoint: /api/create/section
  * @category ApiPages
  */
 export default async function handler(

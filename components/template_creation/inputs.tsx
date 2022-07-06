@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module TemplateInputs
+ */
+
 import { ChangeEventHandler } from "react";
 import TemplateInput from "./input";
 import { FormData } from "./form";
@@ -7,6 +12,9 @@ export interface InputsProps {
   templateEntry: FormData;
 }
 
+/**
+ * @category Components
+ */
 export default function TemplateInputs({
   handleInputChange,
   templateEntry,

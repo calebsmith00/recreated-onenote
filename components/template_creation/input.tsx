@@ -1,14 +1,22 @@
+/**
+ * @packageDocumentation
+ * @module TemplateInput
+ */
+
 import { TextField } from "@mui/material";
 import { InputsProps } from "./inputs";
 import styles from "./input.module.scss";
 
-interface InputProp extends InputsProps {
+export interface InputProp extends InputsProps {
   name: string;
   value: string | undefined;
   placeholder: string | undefined;
   variant?: "outlined" | "filled" | "standard";
 }
 
+/**
+ * @category Components
+ */
 export default function TemplateInput({
   handleInputChange,
   name,

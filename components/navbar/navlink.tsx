@@ -3,13 +3,17 @@ import Link from "next/link";
 import { SetStateAction, useEffect, useState, Dispatch } from "react";
 import links from "../../links.json";
 
-type NavLinkProps = {
+export type NavLinkProps = {
   href: string;
   label?: string;
   value?: number;
   handleLinkClick: Function;
 };
 
+/**
+ * @category Components
+ * @param props
+ */
 const NavLink = ({ href, value, handleLinkClick, label }: NavLinkProps) => {
   const [index, setIndex] = useState<number>(1);
 

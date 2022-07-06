@@ -1,5 +1,15 @@
+/**
+ * @packageDocumentation
+ * @module handleTrainingData
+ */
+
 const tableElements: string[] = ["table", "tr"];
 
+/**
+ * A function to dynamically retrieve table HTML associated with a OneNote page.
+ * @category Helper Functions
+ * @returns
+ */
 export default function retrieveHTML(html: string) {
   const parser = new DOMParser();
   const parsedHTML = parser.parseFromString(html, "text/html");
