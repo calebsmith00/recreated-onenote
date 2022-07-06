@@ -1,6 +1,9 @@
 import type { NextPage, NextPageContext } from "next";
 import TrainingTable from "../components/training_table";
 
+/**
+ * @category Pages
+ */
 const AddTrainings: NextPage = () => {
   return <TrainingTable />;
 };

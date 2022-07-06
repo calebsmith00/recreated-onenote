@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module RetrieveSection
+ */
+
 import { NextApiRequest, NextApiResponse } from "next";
 import { client } from "../../../helpers/graph_client";
 import errors from "../../../helpers/errors";
@@ -10,6 +15,9 @@ import validateBody from "../../../helpers/validate_body";
   notebookID?: string;
 */
 
+/**
+ * @category ApiPages
+ */
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse

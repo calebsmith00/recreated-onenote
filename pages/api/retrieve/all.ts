@@ -1,5 +1,9 @@
-import { NextApiRequest, NextApiResponse } from "next";
+/**
+ * @packageDocumentation
+ * @module RetrieveAllContent
+ */
 
+import { NextApiRequest, NextApiResponse } from "next";
 /*
   BODY PARAMETERS:
   notebookName?: string;
@@ -8,12 +12,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 */
 
 /**
- * API route is used to request all available data from OneNote (notebook(s), section(s), page(s))
- * @category API Routes
- * @namespace RetrieveAllContent
- * @param body {string} Value
- * @function
- * @returns Response code
+ * @category ApiPages
  */
 export default async function handler(
   req: NextApiRequest,

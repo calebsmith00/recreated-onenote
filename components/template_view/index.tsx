@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import SelectTemplate from "./select_template";
 
+/**
+ * A RequestInit object to hold common properties used in a fetch request
+ */
 export const genericFetchOptions: RequestInit = {
+  /**
+   * Method used in the fetch request
+   */
   method: "POST",
   headers: {
     "Content-Type": "application/json",

@@ -1,5 +1,13 @@
+/**
+ * @packageDocumentation
+ * @module HomePage
+ */
+
 import type { NextPage } from "next";
 
+/**
+ * @category Pages
+ */
 const HomePage: NextPage = () => {
   return (
     <div>

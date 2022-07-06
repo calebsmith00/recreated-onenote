@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module CreateTraining
+ */
+
 import { NextApiRequest, NextApiResponse } from "next";
 import errors from "../../../helpers/errors";
 import { client } from "../../../helpers/graph_client";
@@ -11,6 +16,9 @@ import { parse } from "node-html-parser";
   trainingTitle: string;
 */
 
+/**
+ * @category ApiPages
+ */
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse

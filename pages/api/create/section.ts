@@ -1,8 +1,16 @@
+/**
+ * @packageDocumentation
+ * @module CreateSection
+ */
+
 import { NextApiRequest, NextApiResponse } from "next";
 import errors from "../../../helpers/errors";
 import { ApiFetchOptions, client } from "../../../helpers/graph_client";
 import validateToken from "../../../helpers/validate_token";
 
+/**
+ * @category ApiPages
+ */
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse

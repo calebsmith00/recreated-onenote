@@ -4,6 +4,9 @@ type LoginPageProps = {
   authorizeURL: string;
 };
 
+/**
+ * @category Pages
+ */
 const LoginPage: NextPage<LoginPageProps> = ({ authorizeURL }) => {
   return (
     <>

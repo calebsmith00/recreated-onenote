@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module RetrievePageContent
+ */
+
 import { NextApiRequest, NextApiResponse } from "next";
 import { client } from "../../../helpers/graph_client";
 import errors from "../../../helpers/errors";
@@ -9,6 +14,9 @@ import validateBody from "../../../helpers/validate_body";
   pageID: string;
 */
 
+/**
+ * @category ApiPages
+ */
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
